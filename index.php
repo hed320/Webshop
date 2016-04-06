@@ -1,7 +1,7 @@
 <?php
 include_once("include/class.TemplatePower.inc.php");
 
-print "dasdsa";
+print "dasdshdha";
 
 include_once("php/header.php");
 include_once("php/content.php");
