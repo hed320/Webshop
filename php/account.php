@@ -24,7 +24,40 @@ if (isset($_SESSION["userid"]) and isset($_SESSION["role"])) {
 
 if (!empty($_POST["voornaam"]) and !empty($_POST["achternaam"])) {
     if (!empty($_POST["wachtwoord"]) and !empty($_POST["wachtwoord2"]) and $_POST["wachtwoord"] == $_POST["wachtwoord2"]) {
-        //sql met wachtwoord update
+        $options = [
+            'cost' => 12,
+        ];
+        $wachtwoord = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT, $options);
+        try {
+            $wijzigen = $verbinding->prepare("UPDATE gebruikers SET 
+				voornaam= :voornaam, 
+				achternaam= :achternaam,
+				email= :email,
+				wachtwoord= :wachtwoord,
+				adres= :adres,
+				woonplaats= :woonplaats,
+				postcode= :postcode,
+				telefoonnummer= :telefoonnummer
+				WHERE idgebruikers= :id AND email = :email");
+
+            $wijzigen->bindParam(':voornaam', $_POST['voornaam']);
+            $wijzigen->bindParam(':achternaam', $_POST['achternaam']);
+            $wijzigen->bindParam(':email', $_POST['email']);
+            $wijzigen->bindParam(':wachtwoord', $wachtwoord);
+            $wijzigen->bindParam(':adres', $_POST['adres']);
+            $wijzigen->bindParam(':woonplaats', $_POST['woonplaats']);
+            $wijzigen->bindParam(':postcode', $_POST['postcode']);
+            $wijzigen->bindParam(':telefoonnummer', $_POST['telefoon']);
+            $wijzigen->bindParam(':id', $_SESSION['userid']);
+
+            $wijzigen->execute();
+
+            $content->newBlock("SUCCES");
+            $content->assign("SUCCES", "De wijzigingen zijn succesvol opgeslagen");
+        } catch (PDOException $error) {
+            $content->newBlock("ERROR");
+            $content->assign("ERROR", "Kan de wijzigigen niet opslaan");
+        }
     } else {
         //sql zonder wachtwoord update
     }

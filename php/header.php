@@ -22,11 +22,11 @@ if (!empty($_POST["email"]) and !empty($_POST["wachtwoord"])) {
         if (password_verify($_POST["wachtwoord"], $info["wachtwoord"])) {
             $_SESSION["userid"] = $info["idgebruikers"];
             $_SESSION["role"] = $info["role_idrole"];
-            $header->newBlock("SUCCES");
-            $header->assign("SUCCES", "Je bent ingelogd");
+            $header->newBlock("LOGINSUCCES");
+            $header->assign("LOGINSUCCES", "Je bent ingelogd");
         } else {
-            $header->newBlock("ERROR");
-            $header->assign("ERROR", "Je login klopt niet");
+            $header->newBlock("LOGINERROR");
+            $header->assign("LOGINERROR", "Je login klopt niet");
         }
     }
 }
