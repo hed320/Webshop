@@ -59,6 +59,33 @@ if (!empty($_POST["voornaam"]) and !empty($_POST["achternaam"])) {
             $content->assign("ERROR", "Kan de wijzigigen niet opslaan");
         }
     } else {
-        //sql zonder wachtwoord update
+        try {
+            $wijzigen = $verbinding->prepare("UPDATE gebruikers SET 
+				voornaam= :voornaam, 
+				achternaam= :achternaam,
+				email= :email,
+				adres= :adres,
+				woonplaats= :woonplaats,
+				postcode= :postcode,
+				telefoonnummer= :telefoonnummer
+				WHERE idgebruikers= :id AND email = :email");
+
+            $wijzigen->bindParam(':voornaam', $_POST['voornaam']);
+            $wijzigen->bindParam(':achternaam', $_POST['achternaam']);
+            $wijzigen->bindParam(':email', $_POST['email']);
+            $wijzigen->bindParam(':adres', $_POST['adres']);
+            $wijzigen->bindParam(':woonplaats', $_POST['woonplaats']);
+            $wijzigen->bindParam(':postcode', $_POST['postcode']);
+            $wijzigen->bindParam(':telefoonnummer', $_POST['telefoon']);
+            $wijzigen->bindParam(':id', $_SESSION['userid']);
+
+            $wijzigen->execute();
+
+            $content->newBlock("SUCCES");
+            $content->assign("SUCCES", "De wijzigingen zijn succesvol opgeslagen");
+        } catch (PDOException $error) {
+            $content->newBlock("ERROR");
+            $content->assign("ERROR", "Kan de wijzigigen niet opslaan");
+        }
     }
 }

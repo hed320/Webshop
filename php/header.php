@@ -2,7 +2,7 @@
 $header = new TemplatePower("html/header.html");
 $header->prepare();
 
-if (!empty($_POST["email"]) and !empty($_POST["wachtwoord"])) {
+if (!empty($_POST["email"]) and !empty($_POST["wachtwoord"]) and isset($_POST["login"])) {
     $options = [
         'cost' => 12,
     ];

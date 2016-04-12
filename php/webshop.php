@@ -2,5 +2,13 @@
 $content = new TemplatePower("html/webshop.html");
 $content->prepare();
 
-$content->newBlock("PRODUCT");
-$content->assign("PRODUCTID", 1);
+$getcat = $verbinding->prepare("SELECT * FROM categorieen");
+$getcat->execute();
+
+$categorieen = $getcat->fetch(PDO::FETCH_ASSOC);
+
+var_dump($categorieen);
+
+$content->newBlock("CATEGORIE");
+$content->assign("CATEGORIE", "CPU");
+$content->assign("CATID", 1);

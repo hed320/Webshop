@@ -1,3 +1,9 @@
 .registratie {
     margin-top: 50px;
 }
+
+.catnav {
+    position: fixed;
+    margin-top: 100px;
+    max-width: 200px;
+}
