@@ -1,11 +1,36 @@
+<nav class="navbar navbar-default container-fluid catnav">
+    <ul class="nav navbar-nav row">
+        <!-- START BLOCK : CATEGORIE -->
+        <li><a href="index.php?page=webshop&cat={CATID}">{CATEGORIE}</a></li>
+        <!-- END BLOCK : CATEGORIE -->
+    </ul>
+</nav>
+<div class="clear"></div>
 
 <div class="container">
-    <div class="row">
-        <!-- START BLOCK : PRODUCT -->
+    <!-- START BLOCK : CAT -->
+    <div class="row product">
         <div class="col-xs-6 col-md-3">
-            <a href="index.php?page=webshop&product={PRODUCTID}" class="thumbnail">
+            <a href="index.php?page=webshop&cat={CATID}&id={PRODUCTID}" class="thumbnail">
                 <img src="assets/img/{PRODUCTID}.png">
             </a>
+            <a href="index.php?page=webshop&cat={CATID}&id={PRODUCTID}">{NAAM}</a>
+            <p>Prijs &#8364;{PRIJS}</p>
+            <p>{KOMSCHRIJVING}</p>
+            <p>{OMSCHRIJVING}</p>
         </div>
-        <!-- END BLOCK : PRODUCT -->
     </div>
+    <!-- END BLOCK : CAT -->
+
+    <!-- START BLOCK : DETAILS -->
+    <div class="product">
+        <a href="index.php?page=webshop&cat={CATID}&id={PRODUCTID}" class="thumbnail">
+            <img src="assets/img/{PRODUCTID}.png">
+        </a>
+        <a href="index.php?page=webshop&cat={CATID}&id={PRODUCTID}">{NAAM}</a>
+        <p>Prijs &#8364;{PRIJS}</p>
+        <p>{KOMSCHRIJVING}</p>
+        <p>{OMSCHRIJVING}</p>
+        <a href="index.php?page=bestellen&id={PRODUCTID}" class="btn btn-warning">Bestellen</a>
+    </div>
+    <!-- END BLOCK : DETAILS -->
