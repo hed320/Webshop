@@ -5,10 +5,11 @@ $content->prepare();
 $getcat = $verbinding->prepare("SELECT * FROM categorieen");
 $getcat->execute();
 
-$categorieen = $getcat->fetch(PDO::FETCH_ASSOC);
+$categorieen = $getcat->fetchall(PDO::FETCH_ASSOC);
+sort($categorieen);
 
-var_dump($categorieen);
-
-$content->newBlock("CATEGORIE");
-$content->assign("CATEGORIE", "CPU");
-$content->assign("CATID", 1);
+foreach ($categorieen as $value) {
+    $content->newBlock("CATEGORIE");
+    $content->assign("CATEGORIE", $value["naam"]);
+    $content->assign("CATID", $value["idcategorieen"]);
+}

@@ -5,5 +5,11 @@
 .catnav {
     position: fixed;
     margin-top: 100px;
+    margin-left: 20px;
     max-width: 200px;
+}
+
+.catnav li {
+    display: block;
+    float: none;
 }
