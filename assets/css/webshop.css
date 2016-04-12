@@ -21,6 +21,11 @@
 .E-Mail-Form input {
     width: 100%;
     clear: both;
+    background-color: rgba(225, 225, 225, 0.74);
+}
+
+.E-Mail-Form textarea{
+    background-color: #d9d9d9;
 }
 .social-buttons{
     width: 30px;
@@ -39,4 +44,14 @@
 .Contact-gegevens{
     float: right;
     margin-right: 5%;
+}
+
+body{
+    background-image: url("http://www.psdgraphics.com/wp-content/uploads/2013/06/white-background.jpg");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+}
+
+.locatie {
+
 }
