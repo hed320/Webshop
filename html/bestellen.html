@@ -1,0 +1,55 @@
+
+<div class="container registratie">
+
+    <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+            <!-- START BLOCK : ERROR -->
+            <div class="alert alert-danger" role="alert">{ERROR}</div>
+            <!-- END BLOCK : ERROR -->
+
+            <!-- START BLOCK : SUCCES -->
+            <div class="alert alert-success" role="alert">{SUCCES}</div>
+            <!-- END BLOCK : SUCCES -->
+
+            <!-- START BLOCK : BESTELLEN -->
+            <form action="index.php?page=bestellen" method="post">
+                <div class="form-group">
+                    <label for="voornaam">Voornaam</label>
+                    <input type="text" class="form-control" id="voornaam" name="voornaam" value="{VOORNAAM}">
+                </div>
+                <div class="form-group">
+                    <label for="achternaam">Achternaam</label>
+                    <input type="text" class="form-control" id="achternaam" name="achternaam" value="{ACHTERNAAM}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{EMAIL}">
+                </div>
+                <div class="form-group">
+                    <label for="adres">Adres</label>
+                    <input type="text" class="form-control" id="adres" name="adres" value="{ADRES}">
+                </div>
+                <div class="form-group">
+                    <label for="woonplaats">Woonplaats</label>
+                    <input type="text" class="form-control" id="woonplaats" name="woonplaats" value="{WOONPLAATS}">
+                </div>
+                <div class="form-group">
+                    <label for="postcode">Postcode</label>
+                    <input type="text" class="form-control" id="postcode" name="postcode" value="{POSTCODE}">
+                </div>
+                <div class="form-group">
+                    <label for="telefoon">Telefoonnummer</label>
+                    <input type="text" class="form-control" id="telefoon" name="telefoon" value="{TELEFOON}">
+                </div>
+                <div class="form-group">
+                    <label for="wachtwoord">Wachtwoord</label>
+                    <input type="password" class="form-control" id="wachtwoord" name="wachtwoord">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <!-- END BLOCK : BESTELLEN -->
+
+        </div><!-- /.blog-main -->
+    </div><!-- div row-->
