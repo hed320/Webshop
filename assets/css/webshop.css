@@ -1,3 +1,31 @@
 .registratie {
     margin-top: 50px;
 }
+
+.list-group {
+    width: 20%;
+}
+.Contact {
+    margin-left: 2%;
+    width: 40%;
+}
+.E-Mail-Form {
+    width: 40%;
+    margin-left: 2%;
+    margin-top: 3%;
+}
+
+.social-buttons{
+    width: 30px;
+    height: 30px;
+
+}
+
+.buttons {
+    margin-left: 45%;
+}
+
+.copyright {
+    display: inline-block;
+    float: left;
+}
