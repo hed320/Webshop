@@ -28,6 +28,7 @@
             <a class="navbar-brand" href="index.php?page=account">Mijn Account</a>
             <!-- END BLOCK : ACCOUNT -->
         </div>
+        <!-- START BLOCK : LOGIN -->
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form navbar-right" action="index.php" method="post">
                 <div class="form-group">
@@ -40,6 +41,13 @@
                 <a href="index.php?page=registratie" class="btn btn-danger">Registreer</a>
             </form>
         </div><!--/.navbar-collapse -->
+        <!-- END BLOCK : LOGIN -->
+        <!-- START BLOCK : LOGGEDIN -->
+        <form action="index.php" method="post">
+            <button type="submit" class="btn btn-danger uitloggen" name="uitloggen">Uitloggen</button>
+        </form>
+        <div class="clear"></div>
+        <!-- END BLOCK : LOGGEDIN -->
     </div>
 </nav>
 

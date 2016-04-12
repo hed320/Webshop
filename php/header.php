@@ -33,4 +33,12 @@ if (!empty($_POST["email"]) and !empty($_POST["wachtwoord"]) and isset($_POST["l
 
 if (isset($_SESSION["userid"]) and isset($_SESSION["role"])) {
     $header->newBlock("ACCOUNT");
+    $header->newBlock("LOGGEDIN");
+} else {
+    $header->newBlock("LOGIN");
+}
+
+if (isset($_POST["uitloggen"])) {
+    unset($_SESSION["userid"]);
+    unset($_SESSION["role"]);
 }
