@@ -49,7 +49,7 @@
             <!-- END BLOCK : BESTELLEN -->
 
             <!-- START BLOCK : OVERZICHT -->
-            <form action="index.php" method="post">
+            <form action="index.php?page=bestellen&step=bestel" method="post">
                 <div class="form-group">
                     <label for="voornaam">Voornaam</label>
                     <input type="text" class="form-control" id="voornaam" name="voornaam" value="{VOORNAAM}" readonly>
@@ -83,7 +83,7 @@
                     <input type="text" class="form-control" id="producten" name="producten" value="{PRODUCTEN}" readonly>
                 </div>
                 <a href="index.php?page=bestellen&id={PRODUCTID}" class="btn btn-warning">Vorige</a>
-                <button type="submit" class="btn btn-success" name="besteld" value="besteld">Bestellen</button>
+                <button type="submit" class="btn btn-success" name="bestellen" value="bestellen">Bestellen</button>
             </form>
             <!-- END BLOCK : OVERZICHT -->
 

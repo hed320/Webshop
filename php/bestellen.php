@@ -25,6 +25,8 @@ if (isset($_GET["step"])) {
         foreach ($producten as $value) {
             $content->assign("PRODUCTEN", $value["naam"]);
         }
+    } elseif ($_GET["step"] == "bestel") {
+
     }
 } else {
     if (isset($_SESSION["userid"]) and isset($_SESSION["role"])) {
