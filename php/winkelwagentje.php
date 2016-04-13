@@ -1,5 +1,5 @@
 <?php
-$content = new TemplatePower("html/bestellen.html");
+$content = new TemplatePower("html/winkelwagentje.html");
 $content->prepare();
 
 if (isset($_GET["step"])) {
@@ -27,6 +27,9 @@ if (isset($_GET["step"])) {
         }
     } elseif ($_GET["step"] == "bestel") {
 
+    } elseif ($_GET["step"] == "toegevoegd") {
+        $winkelwagen = array("id"=>$_GET["id"],"hoeveelheid"=>$_POST["hoeveelheid"]);
+        $_SESSION["winkelwagentje"] = $winkelwagen;
     }
 } else {
     if (isset($_SESSION["userid"]) and isset($_SESSION["role"])) {
@@ -50,5 +53,3 @@ if (isset($_GET["step"])) {
         }
     }
 }
-
-var_dump($_POST);

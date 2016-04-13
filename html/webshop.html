@@ -31,6 +31,12 @@
         <p>Prijs &#8364;{PRIJS}</p>
         <p>{KOMSCHRIJVING}</p>
         <p>{OMSCHRIJVING}</p>
-        <a href="index.php?page=bestellen&id={PRODUCTID}" class="btn btn-warning">Bestellen</a>
+        <form action="index.php?page=winkelwagentje&step=toegevoegd&id={PRODUCTID}" method="post">
+            <div class="form-group">
+                <label for="hoeveelheid">Hoeveelheid</label>
+                <input type="number" id="hoeveelheid" name="hoeveelheid" value="1">
+            </div>
+            <button type="submit" class="btn btn-success">Bestellen</button>
+        </form>
     </div>
     <!-- END BLOCK : DETAILS -->
