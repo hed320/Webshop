@@ -14,8 +14,23 @@
     float: none;
 }
 
-.product {
+.productrij {
     margin-top: 20px;
+}
+
+.productdetails {
+    margin-top: 30px;
+}
+
+.product .thumbnail {
+    z-index: 2;
+    width: 200px;
+    height: 200px;
+    margin: 0px auto;
+}
+
+.thumbnail img {
+    z-index: 1;
 }
 
 .uitloggen {

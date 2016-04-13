@@ -48,7 +48,7 @@ if (isset($_SESSION["winkelwagentje"])) {
     $winkelwagentje = $_SESSION["winkelwagentje"];
     $hoeveelheid = 0;
     foreach ($winkelwagentje as $key=>$value) {
-        $hoeveelheid =+ $value;
+        $hoeveelheid = $hoeveelheid + $value;
     }
     $header->assign("HOEVEELHEID", $hoeveelheid);
 }

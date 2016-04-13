@@ -14,7 +14,7 @@
             <!-- END BLOCK : SUCCES -->
 
             <!-- START BLOCK : BESTELLEN -->
-            <form action="index.php?page=winkelwagentje&id={PRODUCTID}&step=overzicht" method="post">
+            <form action="index.php?page=winkelwagentje&step=overzicht" method="post">
                 <div class="form-group">
                     <label for="voornaam">Voornaam</label>
                     <input type="text" class="form-control" id="voornaam" name="voornaam" value="{VOORNAAM}">
@@ -43,7 +43,6 @@
                     <label for="telefoon">Telefoonnummer</label>
                     <input type="text" class="form-control" id="telefoon" name="telefoon" value="{TELEFOON}">
                 </div>
-                    <input type="hidden" class="form-control" id="producten" name="producten" value="{PRODUCTID}">
                 <button type="submit" class="btn btn-success">Verder</button>
             </form>
             <!-- END BLOCK : BESTELLEN -->
@@ -152,13 +151,9 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                            </button></td>
+                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping</button></td>
                         <td>
-                            <button type="button" class="btn btn-success">
-                                Checkout <span class="glyphicon glyphicon-play"></span>
-                            </button></td>
+                            <a href="index.php?page=winkelwagentje&step=gegevens" class="btn btn-success">Bestellen<span class="glyphicon glyphicon-play"></span></a></td>
                     </tr>
                     <!-- END BLOCK : TOTAAL -->
                     </tbody>

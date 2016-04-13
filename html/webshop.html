@@ -8,19 +8,20 @@
 <div class="clear"></div>
 
 <div class="container">
+    <div class="row productrij">
     <!-- START BLOCK : CAT -->
-    <div class="row product">
-        <div class="col-xs-6 col-md-3">
+        <div class="col-xs-6 col-md-3 product">
             <a href="index.php?page=webshop&cat={CATID}&id={PRODUCTID}" class="thumbnail">
                 <img src="assets/img/{PRODUCTID}.png">
             </a>
-            <a href="index.php?page=webshop&cat={CATID}&id={PRODUCTID}">{NAAM}</a>
-            <p>Prijs &#8364;{PRIJS}</p>
-            <p>{KOMSCHRIJVING}</p>
-            <p>{OMSCHRIJVING}</p>
+            <div class="productdetails">
+                <a href="index.php?page=webshop&cat={CATID}&id={PRODUCTID}">{NAAM}</a>
+                <p>Prijs &#8364;{PRIJS}</p>
+                <p>{KOMSCHRIJVING}</p>
+            </div>
         </div>
-    </div>
     <!-- END BLOCK : CAT -->
+    </div>
 
     <!-- START BLOCK : DETAILS -->
     <div class="product">
