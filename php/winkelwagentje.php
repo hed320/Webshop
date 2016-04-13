@@ -28,28 +28,40 @@ if (isset($_GET["step"])) {
     } elseif ($_GET["step"] == "bestel") {
 
     } elseif ($_GET["step"] == "toegevoegd") {
-        $winkelwagen = array("id"=>$_GET["id"],"hoeveelheid"=>$_POST["hoeveelheid"]);
-        $_SESSION["winkelwagentje"] = $winkelwagen;
+        $winkelwagentje = array($_GET["id"]=>$_POST["hoeveelheid"]);
+        $_SESSION["winkelwagentje"] = $winkelwagentje;
     }
 } else {
-    if (isset($_SESSION["userid"]) and isset($_SESSION["role"])) {
-        if ($_SESSION["role"] == 1) {
-            // getuser
-            $getinfo = $verbinding->prepare("SELECT * FROM gebruikers WHERE idgebruikers = :id");
-            $getinfo->bindParam(':id', $_SESSION['userid']);
-            $getinfo->execute();
+    $content->newBlock("WINKELWAGENTJE");
+    if (!empty($_SESSION["winkelwagentje"])) {
+        $winkelwagentje = $_SESSION["winkelwagentje"];
+        $totaal = 0.00;
+        $verzendkosten = 6.50;
+        foreach ($winkelwagentje as $key=>$value) {
+            $getproduct = $verbinding->prepare("SELECT * FROM producten WHERE idproducten = :id");
+            $getproduct->bindParam(":id", $key);
+            $getproduct->execute();
 
-            $info = $getinfo->fetch(PDO::FETCH_ASSOC);
+            $product = $getproduct->fetch(PDO::FETCH_ASSOC);
+            $content->newBlock("PRODUCT");
+            $content->assign("ID", $key);
+            $content->assign("CATEGORIE", $product["categorieen_idcategorieen"]);
+            $content->assign("HOEVEELHEID", $value);
+            $content->assign("NAAM", $product["naam"]);
+            $content->assign("PRIJSPRODUCT", $product["prijs"]);
+            $producttotaal = number_format($product["prijs"] * $value, 2, ",", ".");
+            $totaal = $product["prijs"] * $key + $totaal;
+            $content->assign("PRIJSTOTAAL", $producttotaal);
 
-            $content->newBlock("BESTELLEN");
-            $content->assign("VOORNAAM", $info["voornaam"]);
-            $content->assign("ACHTERNAAM", $info["achternaam"]);
-            $content->assign("EMAIL", $info["email"]);
-            $content->assign("ADRES", $info["adres"]);
-            $content->assign("WOONPLAATS", $info["woonplaats"]);
-            $content->assign("POSTCODE", $info["postcode"]);
-            $content->assign("TELEFOON", $info["telefoonnummer"]);
-            $content->assign("PRODUCTID", $_GET["id"]);
+            var_dump($product);
         }
+        $totaal = number_format($totaal, 2, ",", ".");
+        $content->newBlock("TOTAAL");
+        $content->assign("SUBTOTAAL", $totaal);
+        $content->assign("VERZENDKOSTEN", number_format($verzendkosten, 2, ",", "."));
+        $content->assign("TOTAAL", number_format($totaal + $verzendkosten, 2, ",", "."));
+        var_dump($totaal);
     }
 }
+
+var_dump($winkelwagentje);

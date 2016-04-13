@@ -42,3 +42,13 @@ if (isset($_POST["uitloggen"])) {
     unset($_SESSION["userid"]);
     unset($_SESSION["role"]);
 }
+
+if (isset($_SESSION["winkelwagentje"])) {
+    $header->newBlock("WINKELWAGENTJE");
+    $winkelwagentje = $_SESSION["winkelwagentje"];
+    $hoeveelheid = 0;
+    foreach ($winkelwagentje as $key=>$value) {
+        $hoeveelheid =+ $value;
+    }
+    $header->assign("HOEVEELHEID", $hoeveelheid);
+}

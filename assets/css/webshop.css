@@ -22,3 +22,9 @@
     float: right;
     margin-top: 7px;
 }
+
+.winkelwagentje {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

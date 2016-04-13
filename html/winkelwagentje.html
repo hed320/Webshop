@@ -14,7 +14,7 @@
             <!-- END BLOCK : SUCCES -->
 
             <!-- START BLOCK : BESTELLEN -->
-            <form action="index.php?page=bestellen&id={PRODUCTID}&step=overzicht" method="post">
+            <form action="index.php?page=winkelwagentje&id={PRODUCTID}&step=overzicht" method="post">
                 <div class="form-group">
                     <label for="voornaam">Voornaam</label>
                     <input type="text" class="form-control" id="voornaam" name="voornaam" value="{VOORNAAM}">
@@ -49,7 +49,7 @@
             <!-- END BLOCK : BESTELLEN -->
 
             <!-- START BLOCK : OVERZICHT -->
-            <form action="index.php?page=bestellen&step=bestel" method="post">
+            <form action="index.php?page=winkelwagentje&step=bestel" method="post">
                 <div class="form-group">
                     <label for="voornaam">Voornaam</label>
                     <input type="text" class="form-control" id="voornaam" name="voornaam" value="{VOORNAAM}" readonly>
@@ -89,3 +89,81 @@
 
         </div><!-- /.blog-main -->
     </div><!-- div row-->
+
+    <!-- START BLOCK : WINKELWAGENTJE -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Hoeveelheid</th>
+                        <th class="text-center">Prijs</th>
+                        <th class="text-center">Totaal</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- START BLOCK : PRODUCT -->
+                    <tr>
+                        <td class="col-sm-8 col-md-6">
+                            <div class="media">
+                                <a class="thumbnail pull-left" href="index.php?page=webshop&cat={CATEGORIE}&id={ID}"> <img class="media-object" src="assets/img/{ID}.png" style="width: 72px; height: 72px;"> </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><a href="index.php?page=webshop&cat={CATEGORIE}&id={ID}">{NAAM}</a></h4>
+                                </div>
+                            </div></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <input type="number" class="form-control" id="hoeveelheid" value="{HOEVEELHEID}">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>&#8364;{PRIJSPRODUCT}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>&#8364;{PRIJSTOTAAL}</strong></td>
+                        <td class="col-sm-1 col-md-1">
+                            <button type="button" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span> Remove
+                            </button></td>
+                    </tr>
+                    <!-- END BLOCK : PRODUCT -->
+                    <!-- START BLOCK : TOTAAL -->
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><h5>Subtotaal</h5></td>
+                        <td class="text-right"><h5><strong>&#8364;{SUBTOTAAL}</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><h5>Verzendkosten</h5></td>
+                        <td class="text-right"><h5><strong>&#8364;{VERZENDKOSTEN}</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><h3>Totaal</h3></td>
+                        <td class="text-right"><h3><strong>&#8364;{TOTAAL}</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                            </button></td>
+                        <td>
+                            <button type="button" class="btn btn-success">
+                                Checkout <span class="glyphicon glyphicon-play"></span>
+                            </button></td>
+                    </tr>
+                    <!-- END BLOCK : TOTAAL -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- END BLOCK : WINKELWAGENTJE -->
