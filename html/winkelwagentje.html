@@ -14,14 +14,14 @@
             <!-- END BLOCK : SUCCES -->
 
             <!-- START BLOCK : BESTELLEN -->
-            <form action="index.php?page=winkelwagentje&step=overzicht" method="post">
+            <form action="index.php?page=winkelwagentje&step={STEP}" method="post">
                 <div class="form-group">
                     <label for="voornaam">Voornaam</label>
-                    <input type="text" class="form-control" id="voornaam" name="voornaam" value="{VOORNAAM}">
+                    <input type="text" class="form-control" id="voornaam" name="voornaam" value="{VOORNAAM}" {READONLY}>
                 </div>
                 <div class="form-group">
                     <label for="achternaam">Achternaam</label>
-                    <input type="text" class="form-control" id="achternaam" name="achternaam" value="{ACHTERNAAM}">
+                    <input type="text" class="form-control" id="achternaam" name="achternaam" value="{ACHTERNAAM}" {READONLY}>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -29,54 +29,21 @@
                 </div>
                 <div class="form-group">
                     <label for="adres">Adres</label>
-                    <input type="text" class="form-control" id="adres" name="adres" value="{ADRES}">
+                    <input type="text" class="form-control" id="adres" name="adres" value="{ADRES}" {READONLY}>
                 </div>
                 <div class="form-group">
                     <label for="woonplaats">Woonplaats</label>
-                    <input type="text" class="form-control" id="woonplaats" name="woonplaats" value="{WOONPLAATS}">
+                    <input type="text" class="form-control" id="woonplaats" name="woonplaats" value="{WOONPLAATS}" {READONLY}>
                 </div>
                 <div class="form-group">
                     <label for="postcode">Postcode</label>
-                    <input type="text" class="form-control" id="postcode" name="postcode" value="{POSTCODE}">
+                    <input type="text" class="form-control" id="postcode" name="postcode" value="{POSTCODE}" {READONLY}>
                 </div>
                 <div class="form-group">
                     <label for="telefoon">Telefoonnummer</label>
-                    <input type="text" class="form-control" id="telefoon" name="telefoon" value="{TELEFOON}">
+                    <input type="text" class="form-control" id="telefoon" name="telefoon" value="{TELEFOON}" {READONLY}>
                 </div>
-                <button type="submit" class="btn btn-success">Verder</button>
-            </form>
-            <!-- END BLOCK : BESTELLEN -->
-
-            <!-- START BLOCK : OVERZICHT -->
-            <form action="index.php?page=winkelwagentje&step=bestel" method="post">
-                <div class="form-group">
-                    <label for="voornaam">Voornaam</label>
-                    <input type="text" class="form-control" id="voornaam" name="voornaam" value="{VOORNAAM}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="achternaam">Achternaam</label>
-                    <input type="text" class="form-control" id="achternaam" name="achternaam" value="{ACHTERNAAM}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{EMAIL}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="adres">Adres</label>
-                    <input type="text" class="form-control" id="adres" name="adres" value="{ADRES}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="woonplaats">Woonplaats</label>
-                    <input type="text" class="form-control" id="woonplaats" name="woonplaats" value="{WOONPLAATS}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="postcode">Postcode</label>
-                    <input type="text" class="form-control" id="postcode" name="postcode" value="{POSTCODE}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="telefoon">Telefoonnummer</label>
-                    <input type="text" class="form-control" id="telefoon" name="telefoon" value="{TELEFOON}" readonly>
-                </div>
+                <!-- START BLOCK : OVERZICHT -->
                 <div class="form-group">
                     <label for="producten">Producten</label>
                     <input type="text" class="form-control" id="producten" name="producten" value="{PRODUCTEN}" readonly>
@@ -85,10 +52,18 @@
                     <label for="prijs">Totaalprijs</label>
                     <input type="text" class="form-control" id="prijs" name="prijs" value="&#8364;{TOTAAL}" readonly>
                 </div>
+                <!-- END BLOCK : OVERZICHT -->
+                <!-- START BLOCK : VORIGE -->
                 <a href="index.php?page=winkelwagentje&step=gegevens" class="btn btn-warning">Vorige</a>
+                <!-- END BLOCK : VORIGE -->
+                <!-- START BLOCK : BESTEL -->
                 <button type="submit" class="btn btn-success" name="bestellen" value="bestellen">Bestellen</button>
+                <!-- END BLOCK : BESTEL -->
+                <!-- START BLOCK : VERDER -->
+                <button type="submit" class="btn btn-success">Verder</button>
+                <!-- END BLOCK : VERDER -->
             </form>
-            <!-- END BLOCK : OVERZICHT -->
+            <!-- END BLOCK : BESTELLEN -->
 
         </div><!-- /.blog-main -->
     </div><!-- div row-->

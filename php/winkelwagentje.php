@@ -25,7 +25,9 @@ if (isset($_GET["step"])) {
             $product = $product.$producten["naam"].", ";
         }
 
-        $content->newBlock("OVERZICHT");
+        $content->newBlock("BESTELLEN");
+        $content->assign("STEP", "bestel");
+        $content->assign("READONLY", "readonly");
         $content->assign("VOORNAAM", $_POST["voornaam"]);
         $content->assign("ACHTERNAAM", $_POST["achternaam"]);
         $content->assign("EMAIL", $_POST["email"]);
@@ -36,9 +38,12 @@ if (isset($_GET["step"])) {
         if (isset($_POST["telefoonnummer"])) {
             $content->assign("TELEFOON", $_POST["telefoonnummer"]);
         }
+        $content->newBlock("OVERZICHT");
         $content->assign("PRODUCTEN", $product);
         $prijs = number_format($_SESSION["totaal"], 2, ",", ".");
         $content->assign("TOTAAL", $prijs);
+        $content->newBlock("VORIGE");
+        $content->newBlock("BESTEL");
     } elseif ($_GET["step"] == "gegevens") {
         if (isset($_SESSION["userid"]) and isset($_SESSION["role"])) {
             try {
@@ -53,6 +58,7 @@ if (isset($_GET["step"])) {
             }
 
             $content->newBlock("BESTELLEN");
+            $content->assign("STEP", "overzicht");
             $content->assign("VOORNAAM", $gebruiker["voornaam"]);
             $content->assign("ACHTERNAAM", $gebruiker["achternaam"]);
             $content->assign("EMAIL", $gebruiker["email"]);
@@ -62,6 +68,7 @@ if (isset($_GET["step"])) {
             if (isset($gebruiker["telefoonnummer"])) {
                 $content->assign("TELEFOON", $gebruiker["telefoonnummer"]);
             }
+            $content->newBlock("VERDER");
         } else {
             $content->newBlock("ERROR");
             $content->assign("ERROR", "U moet eerst inloggen");
@@ -82,22 +89,33 @@ if (isset($_GET["step"])) {
     } elseif ($_GET["step"] == "bestel") {
         // maak order.
         $winkelwagentje = $_SESSION["winkelwagentje"];
+        try {
+            $makeorder = $verbinding->prepare("INSERT INTO bestelling (datum, gebruikers_idgebruikers) VALUES (:datum, :id)");
+            $date = date("Y-m-d H:i:s");
+            $makeorder->bindParam(":datum", $date);
+            $makeorder->bindParam(":id", $_SESSION["userid"]);
+            $makeorder->execute();
+            $orderid = $verbinding->lastInsertId();
+        } catch (PDOException $error) {
+            $content->newBlock("ERROR");
+            $content->assign("ERROR", $error->getMessage());
+        }
         foreach ($winkelwagentje as $key=>$value) {
             try {
-                $makeorder = $verbinding->prepare("INSERT INTO bestelregel (aantal, producten_idproducten) VALUES (:aantal, :productid)");
-                $makeorder->bindParam(":aantal", $value);
-                $makeorder->bindParam(":productid", $key);
-                $makeorder->execute();
+                $makeorderlist = $verbinding->prepare("INSERT INTO bestelregel (aantal, producten_idproducten, bestelling_idbestelling) VALUES (:aantal, :productid, :id)");
+                $makeorderlist->bindParam(":aantal", $value);
+                $makeorderlist->bindParam(":productid", $key);
+                $makeorderlist->bindParam(":id", $orderid);
+                $makeorderlist->execute();
 
             } catch (PDOException $error) {
                 $content->newBlock("ERROR");
-                $content->assign("ERROR", "Kan de order niet maken");
+                $content->assign("ERROR", $error->getMessage());
             }
             unset($_SESSION["winkelwagentje"][$key]);
         }
         $content->newBlock("SUCCES");
         $content->assign("SUCCES", "De bestelling is succesvol aangemaakt");
-        var_dump($winkelwagentje);
     }
 } else {
     $content->newBlock("WINKELWAGENTJE");
