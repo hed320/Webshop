@@ -23,6 +23,7 @@ if (!empty($_POST["email"]) and !empty($_POST["wachtwoord"]) and isset($_POST["l
         $content->assign("ERROR", "Kan geen gebruiker vinden");
     }
 
+
     if ($checkmail->fetchColumn() == 1) {
         try {
             $getinfo = $verbinding->prepare("SELECT * FROM gebruikers WHERE email = :email");
