@@ -4,11 +4,14 @@ $content->prepare();
 
 if (isset($_SESSION["userid"]) and isset($_SESSION["role"])) {
     if ($_SESSION["role"] == 1) {
-        // getuser
-        $getinfo = $verbinding->prepare("SELECT * FROM gebruikers WHERE idgebruikers = :id");
-        $getinfo->bindParam(':id', $_SESSION['userid']);
-        $getinfo->execute();
-
+        try {
+            $getinfo = $verbinding->prepare("SELECT * FROM gebruikers WHERE idgebruikers = :id");
+            $getinfo->bindParam(':id', $_SESSION['userid']);
+            $getinfo->execute();
+        } catch (PDOException $error) {
+            $content->newBlock("ERROR");
+            $content->assign("ERROR", "Kan uw gegevens niet laden");
+        }
         $info = $getinfo->fetch(PDO::FETCH_ASSOC);
 
         $content->newBlock("FORMULIER");

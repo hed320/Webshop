@@ -2,8 +2,14 @@
 $content = new TemplatePower("html/webshop.html");
 $content->prepare();
 
-$getcat = $verbinding->prepare("SELECT * FROM categorieen");
-$getcat->execute();
+try {
+    $getcat = $verbinding->prepare("SELECT * FROM categorieen");
+    $getcat->execute();
+
+} catch (PDOException $error) {
+    $content->newBlock("ERROR");
+    $content->assign("ERROR", "Kan de categoriëen niet laden");
+}
 
 $categorieen = $getcat->fetchall(PDO::FETCH_ASSOC);
 sort($categorieen);
@@ -15,11 +21,16 @@ foreach ($categorieen as $value) {
 }
 
 if (isset($_GET["cat"]) and isset($_GET["id"])) {
-    $getproducten = $verbinding->prepare("SELECT * FROM producten WHERE categorieen_idcategorieen = :catid AND idproducten = :productid");
-    $getproducten->bindParam(":catid", $_GET["cat"]);
-    $getproducten->bindParam(":productid", $_GET["id"]);
-    $getproducten->execute();
+    try {
+        $getproducten = $verbinding->prepare("SELECT * FROM producten WHERE categorieen_idcategorieen = :catid AND idproducten = :productid");
+        $getproducten->bindParam(":catid", $_GET["cat"]);
+        $getproducten->bindParam(":productid", $_GET["id"]);
+        $getproducten->execute();
 
+    } catch (PDOException $error) {
+        $content->newBlock("ERROR");
+        $content->assign("ERROR", "Kan het product niet laden");
+    }
     $producten = $getproducten->fetchall(PDO::FETCH_ASSOC);
     sort($producten);
 
@@ -33,10 +44,15 @@ if (isset($_GET["cat"]) and isset($_GET["id"])) {
         $content->assign("OMSCHRIJVING", $value["omschrijving"]);
     }
 } elseif (isset($_GET["cat"])) {
-    $getproducten = $verbinding->prepare("SELECT * FROM producten WHERE categorieen_idcategorieen = :catid");
-    $getproducten->bindParam(":catid", $_GET["cat"]);
-    $getproducten->execute();
+    try {
+        $getproducten = $verbinding->prepare("SELECT * FROM producten WHERE categorieen_idcategorieen = :catid");
+        $getproducten->bindParam(":catid", $_GET["cat"]);
+        $getproducten->execute();
 
+    } catch (PDOException $error) {
+        $content->newBlock("ERROR");
+        $content->assign("ERROR", "Kan de categorie niet laden");
+    }
     $producten = $getproducten->fetchall(PDO::FETCH_ASSOC);
     sort($producten);
 
