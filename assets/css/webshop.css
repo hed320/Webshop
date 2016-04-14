@@ -20,6 +20,7 @@
 
 .uitloggen {
     float: right;
+    margin-top: 7px;
 }
 
 .list-group {
@@ -63,14 +64,4 @@
 .Contact-gegevens{
     float: right;
     margin-right: 5%;
-}
-
-body{
-    background-image: url("http://www.psdgraphics.com/wp-content/uploads/2013/06/white-background.jpg");
-    background-repeat: no-repeat;
-    background-size:100% 100%;
-}
-
-.locatie {
-
 }
