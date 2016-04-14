@@ -20,7 +20,6 @@ if (isset($_GET["step"])) {
                 $content->newBlock("ERROR");
                 $content->assign("ERROR", "Kan de producten niet laden");
             }
-
             $producten = $getproducten->fetch(PDO::FETCH_ASSOC);
             $product = $product.$producten["naam"].", ";
         }
