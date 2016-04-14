@@ -24,9 +24,14 @@ if (!empty($_POST["email"]) and !empty($_POST["wachtwoord"]) and isset($_POST["l
     }
 
     if ($checkmail->fetchColumn() == 1) {
-        $getinfo = $verbinding->prepare("SELECT * FROM gebruikers WHERE email = :email");
-        $getinfo->bindParam(":email", $_POST['email']);
-        $getinfo->execute();
+        try {
+            $getinfo = $verbinding->prepare("SELECT * FROM gebruikers WHERE email = :email");
+            $getinfo->bindParam(":email", $_POST['email']);
+            $getinfo->execute();
+        } catch (PDOException $error) {
+            $content->newBlock("ERROR");
+            $content->assign("ERROR", "Kan de gebruiker niet ophalen");
+        }
 
         $info = $getinfo->fetch(PDO::FETCH_ASSOC);
 
