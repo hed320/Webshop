@@ -1,0 +1,140 @@
+
+<div class="container registratie">
+
+    <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+            <!-- START BLOCK : ERROR -->
+            <div class="alert alert-danger" role="alert">{ERROR}</div>
+            <!-- END BLOCK : ERROR -->
+
+            <!-- START BLOCK : SUCCES -->
+            <div class="alert alert-success" role="alert">{SUCCES}</div>
+            <!-- END BLOCK : SUCCES -->
+
+            <!-- START BLOCK : BESTELLEN -->
+            <form action="index.php?page=winkelwagentje&step={STEP}" method="post">
+                <div class="form-group">
+                    <label for="voornaam">Voornaam</label>
+                    <input type="text" class="form-control" id="voornaam" name="voornaam" value="{VOORNAAM}" {READONLY}>
+                </div>
+                <div class="form-group">
+                    <label for="achternaam">Achternaam</label>
+                    <input type="text" class="form-control" id="achternaam" name="achternaam" value="{ACHTERNAAM}" {READONLY}>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{EMAIL}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="adres">Adres</label>
+                    <input type="text" class="form-control" id="adres" name="adres" value="{ADRES}" {READONLY}>
+                </div>
+                <div class="form-group">
+                    <label for="woonplaats">Woonplaats</label>
+                    <input type="text" class="form-control" id="woonplaats" name="woonplaats" value="{WOONPLAATS}" {READONLY}>
+                </div>
+                <div class="form-group">
+                    <label for="postcode">Postcode</label>
+                    <input type="text" class="form-control" id="postcode" name="postcode" value="{POSTCODE}" {READONLY}>
+                </div>
+                <div class="form-group">
+                    <label for="telefoon">Telefoonnummer</label>
+                    <input type="text" class="form-control" id="telefoon" name="telefoon" value="{TELEFOON}" {READONLY}>
+                </div>
+                <!-- START BLOCK : OVERZICHT -->
+                <div class="form-group">
+                    <label for="producten">Producten</label>
+                    <input type="text" class="form-control" id="producten" name="producten" value="{PRODUCTEN}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="prijs">Totaalprijs</label>
+                    <input type="text" class="form-control" id="prijs" name="prijs" value="&#8364;{TOTAAL}" readonly>
+                </div>
+                <!-- END BLOCK : OVERZICHT -->
+                <!-- START BLOCK : VORIGE -->
+                <a href="index.php?page=winkelwagentje&step=gegevens" class="btn btn-warning">Vorige</a>
+                <!-- END BLOCK : VORIGE -->
+                <!-- START BLOCK : BESTEL -->
+                <button type="submit" class="btn btn-success" name="bestellen" value="bestellen">Bestellen</button>
+                <!-- END BLOCK : BESTEL -->
+                <!-- START BLOCK : VERDER -->
+                <button type="submit" class="btn btn-success">Verder</button>
+                <!-- END BLOCK : VERDER -->
+            </form>
+            <!-- END BLOCK : BESTELLEN -->
+
+        </div><!-- /.blog-main -->
+    </div><!-- div row-->
+
+    <!-- START BLOCK : WINKELWAGENTJE -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Hoeveelheid</th>
+                        <th class="text-center">Prijs</th>
+                        <th class="text-center">Totaal</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- START BLOCK : PRODUCT -->
+                    <tr>
+                        <td class="col-sm-8 col-md-6">
+                            <div class="media">
+                                <a class="thumbnail pull-left" href="index.php?page=webshop&cat={CATEGORIE}&id={ID}"> <img class="media-object" src="assets/img/{ID}.png" style="width: 72px; height: 72px;"> </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><a href="index.php?page=webshop&cat={CATEGORIE}&id={ID}">{NAAM}</a></h4>
+                                </div>
+                            </div></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <input type="number" class="form-control" id="hoeveelheid" value="{HOEVEELHEID}">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>&#8364;{PRIJSPRODUCT}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>&#8364;{PRIJSTOTAAL}</strong></td>
+                        <td class="col-sm-1 col-md-1"><a href="index.php?page=winkelwagentje&action=remove&id={ID}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Verwijderen</a></td>
+                    </tr>
+                    <!-- END BLOCK : PRODUCT -->
+                    <!-- START BLOCK : TOTAAL -->
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><h5>Subtotaal</h5></td>
+                        <td class="text-right"><h5><strong>&#8364;{SUBTOTAAL}</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><h5>Verzendkosten</h5></td>
+                        <td class="text-right"><h5><strong>&#8364;{VERZENDKOSTEN}</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><h3>Totaal</h3></td>
+                        <td class="text-right"><h3><strong>&#8364;{TOTAAL}</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="index.php?page=webshop" class="btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Verder Winkelen</a></td>
+                        <td>
+                            <a href="index.php?page=winkelwagentje&step=gegevens" class="btn btn-success">Bestellen<span class="glyphicon glyphicon-play"></span></a></td>
+                    </tr>
+                    <!-- END BLOCK : TOTAAL -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- END BLOCK : WINKELWAGENTJE -->
