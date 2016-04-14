@@ -12,9 +12,14 @@ if (isset($_GET["step"])) {
     if ($_GET["step"] == "overzicht" and !empty($_POST["voornaam"]) and !empty($_POST["achternaam"]) and !empty($_POST["email"]) and !empty($_POST["adres"]) and !empty($_POST["woonplaats"]) and !empty($_POST["postcode"])) {
         $product = "";
         foreach ($_SESSION["winkelwagentje"] as $key=>$value) {
-            $getproducten = $verbinding->prepare("SELECT * FROM producten WHERE idproducten = :productid");
-            $getproducten->bindParam(":productid", $key);
-            $getproducten->execute();
+            try {
+                $getproducten = $verbinding->prepare("SELECT * FROM producten WHERE idproducten = :productid");
+                $getproducten->bindParam(":productid", $key);
+                $getproducten->execute();
+            } catch (PDOException $error) {
+                $content->newBlock("ERROR");
+                $content->assign("ERROR", "Kan de producten niet laden");
+            }
 
             $producten = $getproducten->fetch(PDO::FETCH_ASSOC);
             $product = $product.$producten["naam"].", ";
@@ -36,11 +41,16 @@ if (isset($_GET["step"])) {
         $content->assign("TOTAAL", $prijs);
     } elseif ($_GET["step"] == "gegevens") {
         if (isset($_SESSION["userid"]) and isset($_SESSION["role"])) {
-            $getgebruiker = $verbinding->prepare("SELECT * FROM gebruikers WHERE idgebruikers = :id");
-            $getgebruiker->bindParam(":id", $_SESSION["userid"]);
-            $getgebruiker->execute();
+            try {
+                $getgebruiker = $verbinding->prepare("SELECT * FROM gebruikers WHERE idgebruikers = :id");
+                $getgebruiker->bindParam(":id", $_SESSION["userid"]);
+                $getgebruiker->execute();
 
-            $gebruiker = $getgebruiker->fetch(PDO::FETCH_ASSOC);
+                $gebruiker = $getgebruiker->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $error) {
+                $content->newBlock("ERROR");
+                $content->assign("ERROR", "Kan de gebruiker niet vinden/laden");
+            }
 
             $content->newBlock("BESTELLEN");
             $content->assign("VOORNAAM", $gebruiker["voornaam"]);
@@ -70,7 +80,24 @@ if (isset($_GET["step"])) {
         }
         $_SESSION["winkelwagentje"] = $winkelwagentje;
     } elseif ($_GET["step"] == "bestel") {
-        
+        // maak order.
+        $winkelwagentje = $_SESSION["winkelwagentje"];
+        foreach ($winkelwagentje as $key=>$value) {
+            try {
+                $makeorder = $verbinding->prepare("INSERT INTO bestelregel (aantal, producten_idproducten) VALUES (:aantal, :productid)");
+                $makeorder->bindParam(":aantal", $value);
+                $makeorder->bindParam(":productid", $key);
+                $makeorder->execute();
+
+            } catch (PDOException $error) {
+                $content->newBlock("ERROR");
+                $content->assign("ERROR", "Kan de order niet maken");
+            }
+            unset($_SESSION["winkelwagentje"][$key]);
+        }
+        $content->newBlock("SUCCES");
+        $content->assign("SUCCES", "De bestelling is succesvol aangemaakt");
+        var_dump($winkelwagentje);
     }
 } else {
     $content->newBlock("WINKELWAGENTJE");
@@ -79,9 +106,14 @@ if (isset($_GET["step"])) {
         $totaal = 0.00;
         $verzendkosten = 6.50;
         foreach ($winkelwagentje as $key=>$value) {
-            $getproduct = $verbinding->prepare("SELECT * FROM producten WHERE idproducten = :id");
-            $getproduct->bindParam(":id", $key);
-            $getproduct->execute();
+            try {
+                $getproduct = $verbinding->prepare("SELECT * FROM producten WHERE idproducten = :id");
+                $getproduct->bindParam(":id", $key);
+                $getproduct->execute();
+            } catch (PDOException $error) {
+                $content->newBlock("ERROR");
+                $content->assign("ERROR", "Kan de producten niet laden");
+            }
 
             $product = $getproduct->fetch(PDO::FETCH_ASSOC);
             $content->newBlock("PRODUCT");

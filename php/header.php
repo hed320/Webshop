@@ -2,15 +2,26 @@
 $header = new TemplatePower("html/header.html");
 $header->prepare();
 
+if (isset($_POST["uitloggen"])) {
+    unset($_SESSION["userid"]);
+    unset($_SESSION["role"]);
+}
+
 if (!empty($_POST["email"]) and !empty($_POST["wachtwoord"]) and isset($_POST["login"])) {
     $options = [
         'cost' => 12,
     ];
     $wachtwoord = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT, $options);
 
-    $checkmail = $verbinding->prepare("SELECT count(*) FROM gebruikers WHERE email = :email");
-    $checkmail->bindParam(":email", $_POST['email']);
-    $checkmail->execute();
+    try {
+        $checkmail = $verbinding->prepare("SELECT count(*) FROM gebruikers WHERE email = :email");
+        $checkmail->bindParam(":email", $_POST['email']);
+        $checkmail->execute();
+
+    } catch (PDOException $error) {
+        $content->newBlock("ERROR");
+        $content->assign("ERROR", "Kan geen gebruiker vinden");
+    }
 
     if ($checkmail->fetchColumn() == 1) {
         $getinfo = $verbinding->prepare("SELECT * FROM gebruikers WHERE email = :email");
@@ -36,11 +47,6 @@ if (isset($_SESSION["userid"]) and isset($_SESSION["role"])) {
     $header->newBlock("LOGGEDIN");
 } else {
     $header->newBlock("LOGIN");
-}
-
-if (isset($_POST["uitloggen"])) {
-    unset($_SESSION["userid"]);
-    unset($_SESSION["role"]);
 }
 
 if (isset($_SESSION["winkelwagentje"])) {
