@@ -2,6 +2,12 @@
 $content = new TemplatePower("html/winkelwagentje.html");
 $content->prepare();
 
+if (isset($_GET["action"])) {
+    if ($_GET["action"] == "remove") {
+        unset ($_SESSION["winkelwagentje"][$_GET["id"]]);
+    }
+}
+
 if (isset($_GET["step"])) {
     if ($_GET["step"] == "overzicht" and !empty($_POST["voornaam"]) and !empty($_POST["achternaam"]) and !empty($_POST["email"]) and !empty($_POST["adres"]) and !empty($_POST["woonplaats"]) and !empty($_POST["postcode"])) {
         $product = "";
@@ -26,6 +32,8 @@ if (isset($_GET["step"])) {
             $content->assign("TELEFOON", $_POST["telefoonnummer"]);
         }
         $content->assign("PRODUCTEN", $product);
+        $prijs = number_format($_SESSION["totaal"], 2, ",", ".");
+        $content->assign("TOTAAL", $prijs);
     } elseif ($_GET["step"] == "gegevens") {
         if (isset($_SESSION["userid"]) and isset($_SESSION["role"])) {
             $getgebruiker = $verbinding->prepare("SELECT * FROM gebruikers WHERE idgebruikers = :id");
@@ -61,6 +69,8 @@ if (isset($_GET["step"])) {
             $winkelwagentje[$_GET["id"]] = $_POST["hoeveelheid"];
         }
         $_SESSION["winkelwagentje"] = $winkelwagentje;
+    } elseif ($_GET["step"] == "bestel") {
+        
     }
 } else {
     $content->newBlock("WINKELWAGENTJE");
@@ -80,16 +90,15 @@ if (isset($_GET["step"])) {
             $content->assign("HOEVEELHEID", $value);
             $content->assign("NAAM", $product["naam"]);
             $content->assign("PRIJSPRODUCT", $product["prijs"]);
-            $producttotaal = number_format($product["prijs"] * $value, 2, ",", ".");
-            $totaal = $product["prijs"] * $key + $totaal;
-            $content->assign("PRIJSTOTAAL", $producttotaal);
-
-            var_dump($product);
+            $producttotaal = $product["prijs"] * $value;
+            $totaal = $producttotaal + $totaal;
+            $content->assign("PRIJSTOTAAL", number_format($producttotaal, 2, ",", "."));
         }
         $content->newBlock("TOTAAL");
         $content->assign("SUBTOTAAL",  number_format($totaal, 2, ",", "."));
         $content->assign("VERZENDKOSTEN", number_format($verzendkosten, 2, ",", "."));
         $totaal = $totaal + $verzendkosten;
         $content->assign("TOTAAL", number_format($totaal, 2, ",", "."));
+        $_SESSION["totaal"] = $totaal;
     }
 }

@@ -81,7 +81,11 @@
                     <label for="producten">Producten</label>
                     <input type="text" class="form-control" id="producten" name="producten" value="{PRODUCTEN}" readonly>
                 </div>
-                <a href="index.php?page=bestellen&id={PRODUCTID}" class="btn btn-warning">Vorige</a>
+                <div class="form-group">
+                    <label for="prijs">Totaalprijs</label>
+                    <input type="text" class="form-control" id="prijs" name="prijs" value="&#8364;{TOTAAL}" readonly>
+                </div>
+                <a href="index.php?page=winkelwagentje&step=gegevens" class="btn btn-warning">Vorige</a>
                 <button type="submit" class="btn btn-success" name="bestellen" value="bestellen">Bestellen</button>
             </form>
             <!-- END BLOCK : OVERZICHT -->
@@ -118,10 +122,7 @@
                         </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>&#8364;{PRIJSPRODUCT}</strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>&#8364;{PRIJSTOTAAL}</strong></td>
-                        <td class="col-sm-1 col-md-1">
-                            <button type="button" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove"></span> Remove
-                            </button></td>
+                        <td class="col-sm-1 col-md-1"><a href="index.php?page=winkelwagentje&action=remove&id={ID}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Verwijderen</a></td>
                     </tr>
                     <!-- END BLOCK : PRODUCT -->
                     <!-- START BLOCK : TOTAAL -->
@@ -151,7 +152,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping</button></td>
+                            <a href="index.php?page=webshop" class="btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Verder Winkelen</a></td>
                         <td>
                             <a href="index.php?page=winkelwagentje&step=gegevens" class="btn btn-success">Bestellen<span class="glyphicon glyphicon-play"></span></a></td>
                     </tr>
