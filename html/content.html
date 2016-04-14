@@ -2,13 +2,29 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1>Welkom bij PC4U,</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <h1 class="indexintro">Welkom bij PC4U,</h1>
+        <p class="indexintro">This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
     </div>
+    </div>
+<div class="contentdiv">
+
+    <!-- START BLOCK : CAT -->
+    <div class="row product">
+        <div class="col-xs-6 col-md-3">
+            <a href="index.php?page=webshop&cat={CATID}&id={PRODUCTID}" class="thumbnail">
+                <img src="assets/img/{PRODUCTID}.png">
+            </a>
+            <a href="index.php?page=webshop&cat={CATID}&id={PRODUCTID}">{NAAM}</a>
+            <p>Prijs &#8364;{PRIJS}</p>
+            <p>{KOMSCHRIJVING}</p>
+            <p>{OMSCHRIJVING}</p>
+        </div>
+    </div>
+    <!-- END BLOCK : CAT -->
 </div>
 
-<div class="container">
-    <!-- Example row of columns -->
 
-        </div>
+
+
+
 

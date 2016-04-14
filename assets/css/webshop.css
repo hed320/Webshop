@@ -2,23 +2,56 @@
     margin-top: 50px;
 }
 
-.catnav {
-    position: fixed;
-    margin-top: 100px;
-    margin-left: 20px;
-    max-width: 200px;
+.list-group {
+    width: 20%;
+}
+.Contact {
+    margin-left: 6%;
+    margin-top: 2%;
+    padding: 5px;
+    width: 500px;
+
+}
+.E-Mail-Form {
+    width: 400px;
+    clear: both;
+    margin-left: 6%;
+    margin-top: 3%;
+}
+.E-Mail-Form input {
+    width: 100%;
+    clear: both;
+    background-color: rgba(225, 225, 225, 0.74);
 }
 
-.catnav li {
-    display: block;
-    float: none;
+.E-Mail-Form textarea{
+    background-color: #d9d9d9;
+}
+.social-buttons{
+    width: 30px;
+    height: 30px;
+
 }
 
-.product {
-    margin-top: 20px;
+.buttons {
+    margin-left: 45%;
 }
 
-.uitloggen {
+.copyright {
+    display: inline-block;
+    float: left;
+}
+.Contact-gegevens{
     float: right;
-    margin-top: 7px;
+    margin-right: 5%;
+}
+
+body{
+    background-image: url("http://www.psdgraphics.com/wp-content/uploads/2013/06/white-background.jpg");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+}
+
+.locatie {
+
 }
