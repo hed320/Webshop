@@ -1,27 +1,45 @@
+<nav class="navbar navbar-default container-fluid catnav">
+    <ul class="nav navbar-nav row">
+        <!-- START BLOCK : CATEGORIE -->
+        <li><a href="index.php?&cat={CATID}">{CATEGORIE}</a></li>
+        <!-- END BLOCK : CATEGORIE -->
+    </ul>
+</nav>
+<div class="clear"></div>
 
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
-    <div class="container">
-        <h1 class="indexintro">Welkom bij PC4U,</h1>
-        <p class="indexintro">This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    </div>
-    </div>
-<div class="contentdiv">
-
-    <!-- START BLOCK : AANBEVOLEN -->
-    <div class="row product">
-        <div class="col-xs-6 col-md-3">
-            <a href="index.php?page=webshop&cat={CATID}&id={PRODUCTID}" class="thumbnail">
+<div class="container">
+    <div class="row productrij">
+    <!-- START BLOCK : CAT -->
+        <div class="col-xs-6 col-md-3 product">
+            <a href="index.php?&cat={CATID}&id={PRODUCTID}" class="thumbnail">
                 <img src="assets/img/{PRODUCTID}.png">
             </a>
-            <a href="index.php?page=webshop&cat={CATID}&id={PRODUCTID}">{NAAM}</a>
-            <p>Prijs &#8364;{PRIJS}</p>
-            <p>{KOMSCHRIJVING}</p>
+            <div class="productdetails">
+            <div class="naam">
+                <a href="index.php?&cat={CATID}&id={PRODUCTID}">{NAAM}</a>
+            </div>
+                <p>Prijs &#8364;{PRIJS}</p>
+                <p>{KOMSCHRIJVING}</p>
+            </div>
         </div>
+    <!-- END BLOCK : CAT -->
     </div>
-    <!-- END BLOCK : AANBEVOLEN -->
-</div>
 
-
-
-
+    <!-- START BLOCK : DETAILS -->
+    <div class="product">
+        <a href="index.php?&cat={CATID}&id={PRODUCTID}" class="thumbnail">
+            <img src="assets/img/{PRODUCTID}.png">
+        </a>
+        <a href="index.php?&cat={CATID}&id={PRODUCTID}">{NAAM}</a>
+        <p>Prijs &#8364;{PRIJS}</p>
+        <p>{KOMSCHRIJVING}</p>
+        <p>{OMSCHRIJVING}</p>
+        <form action="index.php?page=winkelwagentje&step=toegevoegd&id={PRODUCTID}&cat={CATID}" method="post">
+            <div class="form-group">
+                <label for="hoeveelheid">Hoeveelheid</label>
+                <input type="number" id="hoeveelheid" name="hoeveelheid" value="1">
+            </div>
+            <button type="submit" class="btn btn-success">Bestellen</button>
+        </form>
+    </div>
+    <!-- END BLOCK : DETAILS -->

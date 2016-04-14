@@ -85,6 +85,7 @@ if (isset($_GET["step"])) {
             $winkelwagentje[$_GET["id"]] = $_POST["hoeveelheid"];
         }
         $_SESSION["winkelwagentje"] = $winkelwagentje;
+        header("Location: index.php?cat=".$_GET["cat"]."");
     } elseif ($_GET["step"] == "bestel") {
         // maak order.
         $winkelwagentje = $_SESSION["winkelwagentje"];
