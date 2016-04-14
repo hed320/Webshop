@@ -20,7 +20,6 @@ if (isset($_GET["step"])) {
                 $content->newBlock("ERROR");
                 $content->assign("ERROR", "Kan de producten niet laden");
             }
-
             $producten = $getproducten->fetch(PDO::FETCH_ASSOC);
             $product = $product.$producten["naam"].", ";
         }
@@ -114,6 +113,9 @@ if (isset($_GET["step"])) {
             }
             unset($_SESSION["winkelwagentje"][$key]);
         }
+        unset($_SESSION["winkelwagentje"]);
+        header( "Location: index.php?page=winkelwagentje&step=voltooid" );
+    } elseif ($_GET["step"] == "voltooid") {
         $content->newBlock("SUCCES");
         $content->assign("SUCCES", "De bestelling is succesvol aangemaakt");
     }
