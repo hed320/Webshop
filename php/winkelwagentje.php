@@ -114,6 +114,9 @@ if (isset($_GET["step"])) {
             }
             unset($_SESSION["winkelwagentje"][$key]);
         }
+        unset($_SESSION["winkelwagentje"]);
+        header( "Location: index.php?page=winkelwagentje&step=voltooid" );
+    } elseif ($_GET["step"] == "voltooid") {
         $content->newBlock("SUCCES");
         $content->assign("SUCCES", "De bestelling is succesvol aangemaakt");
     }
