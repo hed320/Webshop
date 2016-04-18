@@ -70,14 +70,24 @@
 }
 
 .product .thumbnail {
+    position: relative;
     z-index: 2;
     width: 200px;
     height: 200px;
     margin: 0px auto;
+    vertical-align: middle;
 }
 
 .thumbnail img {
     z-index: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 190px;
+    max-width: 190px;
+    margin: auto;
 }
 
 .uitloggen {
