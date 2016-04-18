@@ -1,19 +1,21 @@
 .list-group {
     width: 20%;
 }
+
 .contact {
     margin-left: 6%;
     margin-top: 2%;
     padding: 5px;
     width: 500px;
-
 }
+
 .E-Mail-Form {
     width: 400px;
     clear: both;
     margin-left: 6%;
     margin-top: 3%;
 }
+
 .E-Mail-Form input {
     width: 100%;
     clear: both;
@@ -23,6 +25,7 @@
 .E-Mail-Form textarea{
     background-color: #d9d9d9;
 }
+
 .social-buttons{
     width: 30px;
     height: 30px;
@@ -36,6 +39,7 @@
     display: inline-block;
     float: left;
 }
+
 .Contact-gegevens{
     float: right;
     margin-right: 5%;

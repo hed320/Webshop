@@ -19,7 +19,7 @@ if (!empty($_POST["voornaam"]) and !empty($_POST["achternaam"]) and !empty($_POS
             $insert->execute();
         } catch (PDOException $error) {
             $content->newBlock("ERROR");
-            $content->assign("ERROR", $error->getMessage());
+            $content->assign("ERROR", "Kan de gebruiker niet aanmaken");
         }
         $content->newBlock("SUCCES");
         $content->assign("SUCCES", "Registratie voltooid");
