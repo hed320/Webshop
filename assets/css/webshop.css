@@ -89,6 +89,11 @@
     margin: auto;
 }
 
+.media .thumbnail {
+    height: 30px;
+    width: 30px;
+}
+
 .uitloggen {
     float: right;
     margin-top: 7px;
