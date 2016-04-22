@@ -1,3 +1,11 @@
+<nav class="navbar navbar-default container-fluid catnav">
+    <ul class="nav navbar-nav row">
+        <!-- START BLOCK : ACCOUNT -->
+        <li><a href="index.php?page=account&optie={OPTIE}">{OPTIENAAM}</a></li>
+        <!-- END BLOCK : ACCOUNT -->
+    </ul>
+</nav>
+<div class="clear"></div>
 
 <div class="container registratie">
 
@@ -54,6 +62,70 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <!-- END BLOCK : FORMULIER -->
+
+            <!-- START BLOCK : BESTELLING -->
+                <div class="bestelling">
+                    <div class="gebruiker">
+                        <p>{VOORNAAM} {ACHTERNAAM}</p>
+                    </div>
+                    <!-- START BLOCK : PRODUCT -->
+                    <div class="producten">
+                        <p>Product: {PRODUCTNAAM}</p>
+                        <p>Hoeveelheid: {HOEVEELHEID}</p>
+                    </div>
+                    <!-- END BLOCK : PRODUCT -->
+                </div>
+            <!-- END BLOCK : BESTELLING -->
+
+            <!-- START BLOCK : GEBRUIKER -->
+                <div class="gebruiker">
+                    <a href="index.php?page=account&optie=agebruikers&id={ID}">{VOORNAAM} {ACHTERNAAM}</a>
+                </div>
+            <!-- END BLOCK : GEBRUIKER -->
+
+            <!-- START BLOCK : GEBRUIKERINFO -->
+            <form action="index.php?page=account&optie=agebruikers" method="post" id="gebruikerinfo">
+                <div class="form-group">
+                    <label for="voornaam">Voornaam</label>
+                    <input type="text" class="form-control" id="voornaam" name="voornaam" value="{VOORNAAM}">
+                </div>
+                <div class="form-group">
+                    <label for="achternaam">Achternaam</label>
+                    <input type="text" class="form-control" id="achternaam" name="achternaam" value="{ACHTERNAAM}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{EMAIL}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="adres">Adres</label>
+                    <input type="text" class="form-control" id="adres" name="adres" value="{ADRES}">
+                </div>
+                <div class="form-group">
+                    <label for="woonplaats">Woonplaats</label>
+                    <input type="text" class="form-control" id="woonplaats" name="woonplaats" value="{WOONPLAATS}">
+                </div>
+                <div class="form-group">
+                    <label for="postcode">Postcode</label>
+                    <input type="text" class="form-control" id="postcode" name="postcode" value="{POSTCODE}">
+                </div>
+                <div class="form-group">
+                    <label for="telefoon">Telefoonnummer</label>
+                    <input type="text" class="form-control" id="telefoon" name="telefoon" value="{TELEFOON}">
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="id"  id="id" value="{ID}">
+                </div>
+                <div class="form-group">
+                    <select form="gebruikerinfo" name="role">
+                        <!-- START BLOCK : ROLE -->
+                        <option value="{ID}" {SELECTED}>{ROLENAAM}</option>
+                        <!-- END BLOCK : ROLE-->
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <!-- END BLOCK : GEBRUIKERINFO -->
 
         </div><!-- /.blog-main -->
     </div><!-- div row-->
