@@ -1,5 +1,5 @@
 <?php
-$content = new TemplatePower("html/account.html");
+$content = new TemplatePower("include/account.include");
 $content->prepare();
 
 if (isset($_SESSION["userid"]) and isset($_SESSION["role"])) {

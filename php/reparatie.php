@@ -1,3 +1,3 @@
 <?php
-$content = new TemplatePower("html/reparatie.html");
+$content = new TemplatePower("include/reparatie.include");
 $content->prepare();

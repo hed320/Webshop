@@ -1,5 +1,5 @@
 <?php
-$content = new TemplatePower("html/winkelwagentje.html");
+$content = new TemplatePower("include/winkelwagentje.include");
 $content->prepare();
 
 if (isset($_GET["action"])) {

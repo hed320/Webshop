@@ -1,3 +1,3 @@
 <?php
-$footer = new TemplatePower("html/footer.html");
+$footer = new TemplatePower("include/footer.include");
 $footer->prepare();

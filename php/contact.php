@@ -1,5 +1,5 @@
 <?php
-$content = new TemplatePower("html/contact.html");
+$content = new TemplatePower("include/contact.include");
 $content->prepare();
 
 if (isset($_POST["submit"])) {
